@@ -24,24 +24,18 @@ class MainViewModel : ViewModel() {
 
 
     init {
-        Log.d("MainViewModel => ", "enter init")
         retrofitClient = RetrofitClient().getClient()
         albumsService = retrofitClient?.create(AlbumsService::class.java)
-        Log.d("MainViewModel => ", "enter init => success")
-
-
     }
 
 
     fun getPhotos(id: Int): LiveData<MutableList<DataModel>>? {
         if (currentId != id) {
             currentId = id
-            Log.d("getPhotos => ", "albumsService not xxxxx null")
             albumsService!!.getPhotos(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    Log.d("getPhotos => ", "enter get data")
                     Log.d("getPhotos => ", Gson().toJson(it))
                     dataList?.value = it
                 }

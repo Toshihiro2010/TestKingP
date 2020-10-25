@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_photo.view.*
 class PhotosAdapter(var items: MutableList<DataModel>) : RecyclerView.Adapter<PhotosAdapter.ViewHolder>() {
 
 
-    private var photosListener: itemclickListener? = null
+    private var photosListener: ItemClickListener? = null
     
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,11 +37,11 @@ class PhotosAdapter(var items: MutableList<DataModel>) : RecyclerView.Adapter<Ph
     override fun getItemCount(): Int = items.size
 
 
-    interface itemclickListener{
+    interface ItemClickListener{
         fun onItemClick(item: DataModel)
     }
 
-    fun setItemClickListener(listener : itemclickListener){
+    fun setItemClickListener(listener : ItemClickListener){
         photosListener = listener
     }
 

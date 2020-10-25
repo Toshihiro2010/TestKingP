@@ -14,17 +14,10 @@ import com.google.gson.Gson
 class PhotoDetailFragment : Fragment() {
 
     private var photoDetail: DataModel? = null
-    private var strDetail: String? = "test"
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var numGet = arguments?.getInt("num")
-        strDetail = "GETNUM : $numGet"
         val temp = arguments?.getParcelable<DataModel>("dataObject")
-        Log.d("numGet => ", "get : $numGet")
         Log.d("temp => ", "get : ${Gson().toJson(temp)}")
 
     }

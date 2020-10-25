@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    //    private var retrofitClient: Retrofit? = null
     private lateinit var viewModel: MainViewModel
     private lateinit var dataList: MutableList<DataModel>
 
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.dataList?.observe(this) {
             dataList = it
-            Log.d("ddddddddddd => ", Gson().toJson(it))
+            Log.d("Data => ", Gson().toJson(it))
             updateUI()
         }
         viewModel.getPhotos(1)
@@ -41,9 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI(){
         val photosAdapter = PhotosAdapter(dataList)
-        photosAdapter.setItemClickListener(object : PhotosAdapter.itemclickListener {
+        photosAdapter.setItemClickListener(object : PhotosAdapter.ItemClickListener {
             override fun onItemClick(item: DataModel) {
-                var intent: Intent = Intent(this@MainActivity, PhotoDetailActivity::class.java)
+                val intent: Intent = Intent(this@MainActivity, PhotoDetailActivity::class.java)
                 intent.let {
                     it.putExtra("dataObject", item)
                 }
