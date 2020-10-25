@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.testking.controler.PhotosAdapter
 import com.example.testking.model.DataModel
@@ -23,15 +24,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        title = "Photos"
+        title = getString(R.string.photoTitle)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        viewModel.dataList?.observe(this, {
+        viewModel.dataList?.observe(this) {
             dataList = it
             Log.d("ddddddddddd => ", Gson().toJson(it))
             updateUI()
-        })
+        }
         viewModel.getPhotos(1)
 
 

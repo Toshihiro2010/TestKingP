@@ -1,6 +1,5 @@
 package com.example.testking.controler
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,14 +56,16 @@ class PhotosAdapter(var items: MutableList<DataModel>) : RecyclerView.Adapter<Ph
             val title = currentItem.title
 
             itemView.apply {
-                Glide.with(itemView.context)
+                Glide.with(context)
                     .load(pathImg)
                     .centerCrop()
                     .error(R.drawable.no_image)
-                    .placeholder(R.drawable.ic_launcher_foreground)
-                    .into(itemView.imageView2)
+                    .placeholder(R.drawable.ic_android_white_24dp)
+                    .into(imgItem)
                 txtTitleItem.text = title
             }
+
+
         }
     }
 
